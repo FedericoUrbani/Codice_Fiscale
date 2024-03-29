@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserimento Codice Fiscale</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1>Calcolo Codice Fiscale</h1>
+
+
+
+<form th:action="@{/submit}" th:object="${codiceFiscale}" method="post">
+
+    <img src="/img.png"/>
+
+    <!-- Se il model contiene il codice fiscale, lo visualizza -->
+    <div th:if="${codice}">
+        <p th:text="${codice}"></p>
+    </div>
+
+    <!-- Se il model contiene un messaggio di errore, lo visualizza -->
+    <div th:if="${error}">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" name="nome" th:field="*{nome}"><br>
+    <label for="cognome">Cognome:</label><br>
+    <input type="text" id="cognome" name="cognome" th:field="*{cognome}"><br>
+    <label for="data">Data: (dd/mm/yyyy)</label><br>
+    <input type="text" id="data" name="data" th:field="*{data}"><br>
+    <label for="gender">Gender: (M/F)</label><br>
+    <input type="text" id="gender" name="gender" th:field="*{gender}"><br>
+    <label for="comune">Comune:</label><br>
+    <input type="text" id="comune" name="comune" th:field="*{comune}"><br>
+    <!-- Aggiungi altri campi del CodiceFiscale se necessario -->
+
+    <input type="submit" value="Genera Codice Fiscale">
+    <p> * Questo generatore di codice fiscale non è in grado di trattare casi di "Omocodia" pertando nell' eventualità in cui dovreste riscontrare errori all'interno di sistemi statali o relativi all'ausilio del vostro codice fiscale siete pregati di verificare il vostro codice fiscale presso: <a href="https://www.agenziaentrate.gov.it/portale/web/guest/schede/istanze/richiesta-ts_cf/verifica-codice-fiscale">Agenzia delle Entrate</a></p>
+    *Non è incluso inoltre il calcolo di codice fiscale per le persone con residenza estera possono essere calcolati solo codici fiscali generati tramite un comune italiano.
+
+</form>
+
+
+</body>
+</html>
