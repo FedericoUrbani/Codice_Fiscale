@@ -10,7 +10,6 @@ import java.io.InputStream;
 @Service
 public class FisCodServiceImpl implements FisCodService {
 
-    boolean isValid=true;
     char[] consonanti = {'B', 'C', 'D', 'F', 'G', 'H', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'Z'};
     char[] vocali = {'A', 'E', 'I', 'O', 'U'};
 
@@ -70,7 +69,7 @@ public class FisCodServiceImpl implements FisCodService {
         String surname = string.toUpperCase();
         surname = surname.replaceAll("\\s", "");
         if (!containsOnlyLetters(surname)) {
-            throw new RuntimeException("Il nome ha simboli al suo interno (utilizza solo lettere).");
+            throw new RuntimeException("Il cognome ha simboli al suo interno (utilizza solo lettere).");
         }
         StringBuilder consonantMatching = new StringBuilder();
         StringBuilder vocalsMatching = new StringBuilder();
@@ -108,7 +107,7 @@ public class FisCodServiceImpl implements FisCodService {
     public String yearElaborator(String date) {
 
         if(!verifyFormatDate(date)){
-            throw new RuntimeException("Inserisci un formato valido dd/mm/yyyy");
+            throw new RuntimeException("Inserisci un formato valido dd/mm/yyyy (eg: 01/01/2000)");
         }
 
         String[] part = date.split("/");
@@ -121,7 +120,7 @@ public class FisCodServiceImpl implements FisCodService {
     public String daysElaborator(String date, String gender) {
 
         if(!verifyFormatDate(date)){
-            throw new RuntimeException("Inserisci un formato valido dd/mm/yyyy");
+            throw new RuntimeException("Inserisci un formato valido dd/mm/yyyy (eg: 01/01/2000)");
         }
 
         String gen=gender.toUpperCase();
@@ -131,11 +130,11 @@ public class FisCodServiceImpl implements FisCodService {
         if(gen.equals("F")){
             int numero = Integer.parseInt(result);
             numero += 40;
-            result=""+40;
+            result=""+numero;
         }else if(gen.equals("M")){
 
         }else{
-            throw new RuntimeException("Selezionare M or F nel genere");
+            throw new RuntimeException("Selezionare M o F nel genere");
         }
         return result;
 
@@ -145,8 +144,7 @@ public class FisCodServiceImpl implements FisCodService {
     public String monthElaborator(String date) {
 
         if(!verifyFormatDate(date)){
-            isValid=false;
-            throw new RuntimeException("Inserisci un formato valido dd/mm/yyyy");
+            throw new RuntimeException("Inserisci un formato valido dd/mm/yyyy (eg: 01/01/2000)");
         }
         String[] part = date.split("/");
         String result= part[1];
@@ -341,7 +339,6 @@ public class FisCodServiceImpl implements FisCodService {
             case 25:
                 return "Z";
             default:
-                isValid=false;
                 throw new RuntimeException("Assicurati di scrivere correttamente il tuo comune");
         }
     }
