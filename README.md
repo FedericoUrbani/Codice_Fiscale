@@ -16,7 +16,7 @@ Non supporta il calcolo del Codice Fiscale per cittadini residenti all’estero.
 Possono essere generati solo codici fiscali per comuni italiani.
 
 🖥️ Avvio del progetto
-Assicurati di avere installato Java
+Assicurati di avere installato Java.
 Clona la repository e avvia il main itramite IDE.
 Apri il browser e visita:
 http://localhost:8081
